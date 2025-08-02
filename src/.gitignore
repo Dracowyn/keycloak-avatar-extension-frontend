@@ -1,6 +1,7 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
+# account/personal-info/PersonalInfo.tsx
 # === Owned files end =====
 
 # === @keycloakify/keycloak-ui-shared v260200.0.0 ===
@@ -135,7 +136,6 @@
 /account/i18n/messages_zh_TW.properties
 /account/oid4vci/Oid4Vci.tsx
 /account/organizations/Organizations.tsx
-/account/personal-info/PersonalInfo.tsx
 /account/resources/EditTheResource.tsx
 /account/resources/PermissionRequest.tsx
 /account/resources/Resources.tsx
