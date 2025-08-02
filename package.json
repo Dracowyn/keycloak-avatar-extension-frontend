@@ -1,7 +1,7 @@
 {
-    "name": "keycloakify-starter",
-    "version": "0.0.0",
-    "description": "Starter for Keycloakify 11",
+    "name": "keycloak-avatar-extension-frontend",
+    "version": "1.0.0",
+    "description": "Keycloak Avatar Extension Frontend",
     "repository": {
         "type": "git",
         "url": "git://github.com/codegouvfr/keycloakify-starter.git"
