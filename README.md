@@ -103,4 +103,4 @@ src/account/
 
 - [Keycloak 头像插件后端](https://github.com/Dracowyn/keycloak-avatar-extension)
 - [Keycloakify 官方文档](https://docs.keycloakify.dev/)
-- [PatternFly React 组件库](https://www.patternfly.org/components/)
+- [PatternFly React 组件库](https://www.patternfly.org/)
