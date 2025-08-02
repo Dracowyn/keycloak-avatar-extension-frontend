@@ -23,8 +23,9 @@ import {
     Button,
     ExpandableSection,
     Form,
+    FormGroup,
     Spinner
-} from "../../shared/@patternfly/react-core";
+} from "@patternfly/react-core";
 import { ExternalLinkSquareAltIcon } from "../../shared/@patternfly/react-icons";
 import { TFunction } from "i18next";
 import { useState } from "react";
@@ -34,6 +35,7 @@ import { useTranslation } from "react-i18next";
 import { getPersonalInfo, getSupportedLocales, savePersonalInfo } from "../api/methods";
 import { UserProfileMetadata, UserRepresentation } from "../api/representations";
 import { Page } from "../components/page/Page";
+import UploadAvatarModal from "../components/UploadAvatarModal";
 import type { Environment } from "../environment";
 import { TFuncKey, i18n } from "../i18n";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
@@ -72,12 +74,12 @@ export const PersonalInfo = () => {
             await savePersonalInfo(context, { ...user, attributes });
             const locale = attributes["locale"]?.toString();
             if (locale)
-                i18n.changeLanguage(locale, error => {
+                await i18n.changeLanguage(locale, error => {
                     if (error) {
                         console.warn("Error(s) loading locale", locale, error);
                     }
                 });
-            context.keycloak.updateToken();
+            await context.keycloak.updateToken();
             addAlert(t("accountUpdatedMessage"));
         } catch (error) {
             addAlert(t("accountUpdatedError"), AlertVariant.danger);
@@ -100,6 +102,11 @@ export const PersonalInfo = () => {
             ?.map(a => a.readOnly)
             .reduce((p, c) => p && c, true);
 
+    // delete userProfileMetadata.attributes.avatar;
+    userProfileMetadata.attributes = userProfileMetadata.attributes.filter(
+        attribute => attribute.name !== "avatar" && attribute.name !== "picture"
+    );
+
     const {
         updateEmailFeatureEnabled,
         updateEmailActionEnabled,
@@ -109,6 +116,12 @@ export const PersonalInfo = () => {
     return (
         <Page title={t("personalInfo")} description={t("personalInfoDescription")}>
             <Form isHorizontal onSubmit={handleSubmit(onSubmit)}>
+                <FormGroup label={t("avatar")} fieldId="avatar">
+                    <UploadAvatarModal
+                        buttonId="upload-avatar-dialog-btn"
+                        buttonTitle={t("uploadAvatar")}
+                    />
+                </FormGroup>
                 <UserProfileFields
                     form={form}
                     userProfileMetadata={userProfileMetadata}

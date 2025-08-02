@@ -1,0 +1,44 @@
+/* Avatar Upload Modal Styles */
+.upload-avatar-modal .pf-v5-c-form__group-control {
+	width: 100%;
+}
+
+/* File upload styles */
+.upload-avatar-modal .pf-v5-c-file-upload {
+	width: 100%;
+}
+
+.upload-avatar-modal .pf-v5-c-file-upload__file-select {
+	width: 100%;
+}
+
+.upload-avatar-modal .pf-v5-c-file-upload__file-select .pf-v5-c-input-group {
+	width: 100%;
+}
+
+.upload-avatar-modal .pf-v5-c-file-upload__file-select .pf-v5-c-button {
+	flex: 1;
+}
+
+/* Avatar preview image styles */
+.upload-avatar-modal .avatar-preview-image {
+	max-width: 100%;
+	max-height: 300px;
+	object-fit: contain;
+	display: block;
+	margin: 0 auto;
+	border: 1px solid #d2d2d2;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+/* Ensure form group takes full width */
+.upload-avatar-modal .pf-v5-c-form-group {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+.upload-avatar-modal .pf-v5-c-form__helper-text {
+	margin-top: 0.25rem;
+	display: block;
+}
