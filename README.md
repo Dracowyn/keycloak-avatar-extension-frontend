@@ -1,58 +1,106 @@
-<p align="center">
-    <i>🚀 <a href="https://keycloakify.dev">Keycloakify</a> v11 starter 🚀</i>
-    <br/>
-    <br/>
-</p>
+# Keycloak 头像插件前端
 
-# Quick start
+这是一个专为 Keycloak 头像插件设计的前端界面项目，提供了用户头像上传、预览和管理的完整用户体验。
 
-```bash
-git clone https://github.com/keycloakify/keycloakify-starter
-cd keycloakify-starter
-yarn install # Or use an other package manager, just be sure to delete the yarn.lock if you use another package manager.
-```
+> ⚠️ **注意**: 本项目仅作为参考实现，展示如何在 Keycloakify 中集成头像功能。实际使用时请根据具体需求进行调整。
 
-# Testing the theme locally
+## 功能特性
 
-[Documentation](https://docs.keycloakify.dev/testing-your-theme)
+- 🖼️ **头像上传**: 支持拖拽和点击选择图片文件
+- 👁️ **实时预览**: 上传前可预览头像效果
+- 🔄 **自动刷新**: 上传成功后自动更新头像显示
+- 📱 **响应式设计**: 适配不同屏幕尺寸
+- 🌍 **国际化支持**: 多语言界面
+- ✨ **PatternFly UI**: 基于 PatternFly 5的现代化界面
 
-# How to customize the theme
+## 快速开始
 
-[Documentation](https://docs.keycloakify.dev/customization-strategies)
+### 前提条件
 
-# Building the theme
+- Node.js >= 18
+- yarn
+- docker
+- 已安装 [Keycloak 头像插件后端](https://github.com/Dracowyn/keycloak-avatar-extension) 的Keycloak实例
 
-You need to have [Maven](https://maven.apache.org/) installed to build the theme (Maven >= 3.1.1, Java >= 7).  
-The `mvn` command must be in the $PATH.
-
--   On macOS: `brew install maven`
--   On Debian/Ubuntu: `sudo apt-get install maven`
--   On Windows: `choco install openjdk` and `choco install maven` (Or download from [here](https://maven.apache.org/download.cgi))
+### 安装依赖
 
 ```bash
-npm run build-keycloak-theme
+git clone https://github.com/your-username/keycloakify-avatar-extension-frontend
+cd keycloakify-avatar-extension-frontend
+yarn install
 ```
 
-Note that by default Keycloakify generates multiple .jar files for different versions of Keycloak.  
-You can customize this behavior, see documentation [here](https://docs.keycloakify.dev/features/compiler-options/keycloakversiontargets).
+### 开发和测试
 
-# Initializing the account theme
+使用 Keycloakify 提供的开发环境快速启动 Keycloak 进行测试：
 
 ```bash
-npx keycloakify initialize-account-theme
+npx keycloakify start-keycloak
 ```
 
-# Initializing the email theme
+这个命令会：
+
+- 启动一个包含头像插件的 Keycloak 实例
+- 自动应用当前的主题
+- 提供热重载功能用于开发
+
+### 构建主题
+
+如果只是构建主题则不需要安装docker和运行Keycloak实例。
 
 ```bash
-npx keycloakify initialize-email-theme
+yarn build-keycloak-theme
 ```
 
-# GitHub Actions
+构建完成后，生成的主题文件位于 `dist_keycloak/` 目录中。
 
-The starter comes with a generic GitHub Actions workflow that builds the theme and publishes
-the jars [as GitHub releases artifacts](https://github.com/keycloakify/keycloakify-starter/releases/tag/v10.0.0).  
-To release a new version **just update the `package.json` version and push**.
+## 项目结构
 
-To enable the workflow go to your fork of this repository on GitHub then navigate to:
-`Settings` > `Actions` > `Workflow permissions`, select `Read and write permissions`.
+```
+src/account/
+├── components/
+│   ├── UploadAvatarModal.tsx    # 头像上传组件
+|   └── UploadAvatarModal.css    # 头像上传组件样式
+├── personal-info/
+│   └── PersonalInfo.tsx         # 个人信息页面（包含头像显示）
+└── ...
+```
+
+### 核心组件
+
+#### UploadAvatarModal
+
+头像上传的核心组件，提供：
+
+- 模态对话框形式的上传界面
+- 文件拖拽和选择功能
+- 图片预览
+- 错误处理
+
+#### PersonalInfo
+
+个人信息页面的扩展，在原有字段基础上添加了头像管理功能。
+
+## Keycloak 配置
+
+### 后端插件安装
+
+首先需要安装头像插件后端：
+
+1. 下载或编译 [keycloak-avatar-extension](https://github.com/Dracowyn/keycloak-avatar-extension)
+2. 将插件 JAR 文件放入 Keycloak 的 `providers/` 目录
+3. 重启 Keycloak
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目。
+
+## 许可证
+
+本项目采用 MIT 许可证。
+
+## 相关链接
+
+- [Keycloak 头像插件后端](https://github.com/Dracowyn/keycloak-avatar-extension)
+- [Keycloakify 官方文档](https://docs.keycloakify.dev/)
+- [PatternFly React 组件库](https://www.patternfly.org/components/)
